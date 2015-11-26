@@ -1,58 +1,74 @@
-/**
- * A class to model a simple email client. The client is run by a
- * particular user, and sends and retrieves mail via a particular server.
- * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
- */
 public class MailClient
 {
-    // The server used for sending and receiving.
-    private MailServer server;
-    // The user running this client.
-    private String user;
+	//El servidor al que esta conectado este cliente
+	private MailServer server;
+	//La direccion del usuario que esta usando este cliente
+	private String user;
 
-    /**
-     * Create a mail client run by user and attached to the given server.
-     */
-    public MailClient(MailServer server, String user)
-    {
-        this.server = server;
-        this.user = user;
-    }
+	/**
+	 * Crea un objeto MailClient a partir de los valores dados
+	 */
+	public MailClient(MailServer servidorX, String usuarioX)
+	{
+		user = usuarioX;
+		server = servidorX;
+	}
 
-    /**
-     * Return the next mail item (if any) for this user.
-     */
-    public MailItem getNextMailItem()
-    {
-        return server.getNextMailItem(user);
-    }
+	/**
+	 * Recupera del servidor el siguiente email destinado
+	 * al usuario que esta usando el cliente. Si no hay 
+	 * ningun email pendiente de ser descargado devuelve null; si
+	 * lo hay, devuelve el email
+	 */
+	public MailItem getNextMailItem()
+	{
+		return server.getNextMailItem(user);
+	}
+	
+	
+	/**
+	 * Recupera del servidor el siguiente email destinado al
+	 * usuario que esta usando el cliente e imprime sus datos
+	 * por pantalla. Si no hay ningun email imprime por pantalla
+	 * un mensaje advirtiendo de ello
+	 */
+	public void printNextMailItem()
+	{
+		MailItem email = getNextMailItem();
+		if (email != null)
+		{
+			//Imprimimos los detalles del email
+			email.print();
+		}
+		else 
+		{
+			//Avisamos de que no hay emails en el servidor
+			System.out.println("No hay correo nuevo");	
+		}
+	}
 
-    /**
-     * Print the next mail item (if any) for this user to the text 
-     * terminal.
-     */
-    public void printNextMailItem()
-    {
-        MailItem item = server.getNextMailItem(user);
-        if(item == null) {
-            System.out.println("No new mail.");
-        }
-        else {
-            item.print();
-        }
-    }
-
-    /**
-     * Send the given message to the given recipient via
-     * the attached mail server.
-     * @param to The intended recipient.
-     * @param message The text of the message to be sent.
-     */
-    public void sendMailItem(String to, String message)
-    {
-        MailItem item = new MailItem(user, to, message);
-        server.post(item);
-    }
+	/**
+	 * Permite redactar un email indicando el destinatario y el
+	 * cuerpo del mensaje y enviarlo al servidor
+	 */
+	public void sendMailItem(String to, String message)
+	{
+		MailItem email = new MailItem(user, to, message);
+		server.post(email);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,64 +1,65 @@
-/**
- * A class to model a simple mail item. The item has sender and recipient
- * addresses and a message string.
- * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
- */
 public class MailItem
 {
-    // The sender of the item.
-    private String from;
-    // The intended recipient.
-    private String to;
-    // The text of the message.
-    private String message;
+	//La direccion del remitente
+	private String from;
+	//La dirección del receptor
+	private String to;
+	//El cuerpo del mensaje de email
+	private String message;
 
-    /**
-     * Create a mail item from sender to the given recipient,
-     * containing the given message.
-     * @param from The sender of this item.
-     * @param to The intended recipient of this item.
-     * @param message The text of the message to be sent.
-     */
-    public MailItem(String from, String to, String message)
-    {
-        this.from = from;
-        this.to = to;
-        this.message = message;
-    }
 
-    /**
-     * @return The sender of this message.
-     */
-    public String getFrom()
-    {
-        return from;
-    }
+	/**
+	 * Crea un objeto MailItem inicializando sus atributos
+	 * a los valores dados como parametros
+	 */
+	public MailItem(String de, String para, String mensaje)
+	{
+		from = de;
+		to = para;
+		message = mensaje;
+	}
+	
+	/**
+	 * Devuelve la direccion el remitente
+	 */
+	public String getFrom(){
+		return from;
 
-    /**
-     * @return The intended recipient of this message.
-     */
-    public String getTo()
-    {
-        return to;
-    }
+	}
+	
+	/**
+	 * Devuelve la dirección del receptor
+	 */
+	public String getTo(){
+		return to;
+	}
+	
+	/**
+	 * Devuelve el cuerpo del mensaje
+	 */
+	public String getMessage() {	
 
-    /**
-     * @return The text of the message.
-     */
-    public String getMessage()
-    {
-        return message;
-    }
+		return message;
+	}
 
-    /**
-     * Print this mail message to the text terminal.
-     */
-    public void print()
-    {
-        System.out.println("From: " + from);
-        System.out.println("To: " + to);
-        System.out.println("Message: " + message);
-    }
+	/**
+	 * Imprime por pantalla el remitente, el receptor y el
+	 * cuerpo del email
+	 */
+	public void print()
+	{
+		System.out.println ("De: " + from);
+		System.out.println ("Para: " + to);
+		System.out.println ("Mensaje: " + message);
+	}
+
+	
 }
+
+
+
+
+
+
+
+
