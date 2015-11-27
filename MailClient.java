@@ -8,10 +8,10 @@ public class MailClient
 	/**
 	 * Crea un objeto MailClient a partir de los valores dados
 	 */
-	public MailClient(MailServer servidorX, String usuarioX)
+	public MailClient(MailServer server, String user)
 	{
-		user = usuarioX;
-		server = servidorX;
+		this.user = user;
+		this.server = server;
 	}
 
 	/**
@@ -57,8 +57,6 @@ public class MailClient
 		server.post(email);
 	}
 }
-
-
 
 
 

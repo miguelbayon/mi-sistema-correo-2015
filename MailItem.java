@@ -12,11 +12,11 @@ public class MailItem
 	 * Crea un objeto MailItem inicializando sus atributos
 	 * a los valores dados como parametros
 	 */
-	public MailItem(String de, String para, String mensaje)
+	public MailItem(String from, String to, String message)
 	{
-		from = de;
-		to = para;
-		message = mensaje;
+		this.from = from;
+		this.to = to;
+		this.message = message;
 	}
 	
 	/**
