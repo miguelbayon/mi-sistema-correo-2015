@@ -57,7 +57,30 @@ public class MailClient
 		MailItem email = new MailItem(user, to, message, subject);
 		server.post(email);
 	}
+	
+	
+	/**
+	 * Muestra por pantalla el numero de mensajes pendientes de
+	 * descargar en el servidor para el usuario actual
+	 */
+	public void howManyMailItemsIHave()
+	{
+		System.out.println("Emails pendientes en el servidor: " + 
+		                   server.howManyMailItems(user));
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
