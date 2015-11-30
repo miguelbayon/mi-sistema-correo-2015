@@ -5,6 +5,8 @@ public class MailClient
 	private MailServer server;
 	//La direccion del usuario que esta usando este cliente
 	private String user;
+	//El ultimo email recibido
+	private MailItem lastMail;
 
 	/**
 	 * Crea un objeto MailClient a partir de los valores dados
@@ -13,6 +15,7 @@ public class MailClient
 	{
 		this.user = user;
 		this.server = server;
+		lastMail = null;
 	}
 
 	/**
@@ -23,7 +26,11 @@ public class MailClient
 	 */
 	public MailItem getNextMailItem()
 	{
-		return server.getNextMailItem(user);
+		MailItem email = server.getNextMailItem(user);
+		if (email != null) {
+			lastMail = email;
+		}
+		return email;
 	}
 	
 	
@@ -58,7 +65,7 @@ public class MailClient
 		server.post(email);
 	}
 	
-	
+		
 	/**
 	 * Muestra por pantalla el numero de mensajes pendientes de
 	 * descargar en el servidor para el usuario actual
@@ -88,13 +95,16 @@ public class MailClient
 	 * Muestra por pantalla los datos del ultimo email recibido.
 	 * En caso de no haber recibido aun ningun email, informa de ello.
 	 */
+	public void muestraUltimoEmail() 
+	{
+		if(lastMail != null) {
+			lastMail.print();
+		}
+		else {
+			System.out.println("No hay ningún mensaje.");
+		}
+	}
 }
-
-
-
-
-
-
 
 
 
