@@ -68,8 +68,27 @@ public class MailClient
 		System.out.println("Emails pendientes en el servidor: " + 
 		                   server.howManyMailItems(user));
 	}
+	
+	/**
+	 * Recibe un correo y responde automaticamente indicando
+	 * que estamos fuera de la oficina
+	 */
+	public void getNextMailItemAndSendAutomaticRespond()
+	{	
+		MailItem email = getNextMailItem();
+		if (email != null)
+		{
+			sendMailItem(email.getFrom(),
+			             "No estoy en la oficina. \n" + email.getMessage(),
+			             "RE: " + email.getSubject());
+		}
+	}
+	
+	/**
+	 * Muestra por pantalla los datos del ultimo email recibido.
+	 * En caso de no haber recibido aun ningun email, informa de ello.
+	 */
 }
-
 
 
 
